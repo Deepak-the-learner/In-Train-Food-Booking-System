@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+    <style>
+      body {
+        background-image: url("https://img.freepik.com/free-photo/vintage-old-rustic-cutlery-dark_1220-4886.jpg?size=626&ext=jpg&ga=GA1.1.399751108.1709614361&semt=ais");
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 20px;
+      }
+
+      .cart {
+        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .cart ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .cart ul li {
+        border-bottom: 1px solid #e0e0e0;
+        padding: 10px 0;
+      }
+
+      .cart ul li:last-child {
+        border-bottom: none;
+      }
+
+      .cart form {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .cart form p {
+        margin: 0;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .cart form input[type="number"] {
+        width: 60px;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #e0e0e0;
+        text-align: center;
+      }
+
+      .cart form button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 15px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .cart form button:hover {
+        background-color: #45a049;
+      }
+
+      .cart p {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 20px;
+      }
+
+      .empty-cart-message {
+        text-align: center;
+        font-size: 24px;
+        margin-top: 50px;
+      }
+
+      .cart-options {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+      }
+
+      .cart-options a {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+
+      .cart-options a:hover {
+        background-color: #45a049;
+      }
+
+      .cart-options .checkout {
+        margin-left: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cart">
+      <ul>
+        <% if (cart.length === 0) { %>
+        <p class="empty-cart-message">Your Cart is Empty</p>
+        <% } else { %> <% let Total_Cost = 0; %> <% for (let i = 0; i <
+        cart.length; i++) { %>
+        <li>
+          <form action="/update-cart" method="get">
+            <input
+              type="hidden"
+              name="selectedOptions"
+              value="<%= cart[i].Selected_Options %>"
+            />
+            <input
+              type="hidden"
+              name="amount"
+              value="<%= cart[i].Total_Amount %>"
+            />
+            <p><%= cart[i].Selected_Options %></p>
+            <input
+              type="hidden"
+              name="oldno"
+              value="<%= cart[i].Total_Items %>"
+            />
+            <input
+              type="number"
+              name="quantity"
+              value="<%= cart[i].Total_Items %>"
+              min="1"
+            />
+            <% Total_Cost += cart[i].Total_Amount; %>
+            <button type="submit">Update</button>
+          </form>
+          <form action="/delete-from-cart" method="get">
+            <input
+              type="hidden"
+              name="selectedOptions"
+              value="<%= cart[i].Selected_Options %>"
+            />
+            <button type="submit">Delete</button>
+          </form>
+        </li>
+        <% } %>
+        <p>Cost: Rs.<%= Total_Cost %></p>
+        <% } %>
+      </ul>
+      <div class="cart-options">
+        <% if (cart.length === 0) { %>
+        <a href="/menu" method="get">Back to Menu</a>
+        <% } else { %>
+        <a href="/menu" method="get">Back to Menu</a>
+        <a href="/checkout" class="checkout" method="get"
+          >Proceed to Checkout</a
+        >
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>

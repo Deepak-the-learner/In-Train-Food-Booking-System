@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Done</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      h1 {
+        color: #4caf50;
+      }
+
+      p {
+        font-size: 18px;
+        margin-bottom: 20px;
+      }
+
+      .cart-options {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+      }
+
+      .cart-options a {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+
+      .cart-options a:hover {
+        background-color: #45a049;
+      }
+
+      .cart-options .checkout {
+        margin-left: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Order Successful</h1>
+      <p>Your order has been successfully processed.</p>
+      <div class="cart-options">
+        <a href="/" method="get">Back to Home</a>
+        <a href="/download-bill" class="checkout" method="get">Download Bill</a>
+      </div>
+    </div>
+  </body>
+</html>

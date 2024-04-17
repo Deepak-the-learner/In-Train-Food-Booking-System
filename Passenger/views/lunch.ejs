@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu</title>
+  </head>
+  <style>
+    .menu {
+      display: flex;
+      flex-wrap: wrap; /* Allow menu items to wrap to the next line */
+      justify-content: center; /* Center-align menu items horizontally */
+      gap: 20px; /* Add space between menu items */
+    }
+
+    .menu-item {
+      width: 200px; /* Set a fixed width for each menu item */
+      padding: 10px; /* Add padding inside each menu item */
+      /* Set a semi-transparent white background */
+      border-radius: 8px; /* Add border radius for rounded corners */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+      text-align: center; /* Center-align content inside menu items */
+    }
+
+    body {
+      background-image: url("https://img.freepik.com/free-photo/vintage-old-rustic-cutlery-dark_1220-4886.jpg?size=626&ext=jpg&ga=GA1.1.399751108.1709614361&semt=ais"); /* Add the path to your food background image */
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    form {
+      background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      color: white;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+    #cart-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    #cart button {
+      width: 120px;
+      height: 60px;
+      border-radius: 30px;
+      background-color: white;
+      color: black;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    #lunch {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    #lunch-dinner button {
+      width: 150px;
+      height: 60px;
+      border-radius: 30px;
+      background-color: white;
+      color: black;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+  </style>
+  <body>
+    <h1>Menu</h1>
+    <% for(let i = 0; i < menu.length; i++) { %>
+    <div class="menu-item">
+      <h3><%= menu[i].Item %></h3>
+      <p>Price: <%= menu[i].Price %> INR</p>
+      <form action="/add-to-cart" method="get">
+        <input type="hidden" name="Item" value="<%= menu[i].Item %>" />
+        <input type="hidden" name="amount" value="<%= menu[i].Price %>" />
+        <input type="number" name="quantity" value="0" min="0" />
+        <button type="submit">Add to Cart</button>
+      </form>
+    </div>
+    <% }%>
+    <div id="cart-container">
+      <a href="/cart" method="get" id="cart"><button>Your Cart</button></a>
+    </div>
+    <div id="lunch">
+      <a href="/options?pnr=<%= Pno %>" id="lunch-dinner">
+        <button>Lunch/Dinner</button>
+      </a>
+    </div>
+  </body>
+</html>

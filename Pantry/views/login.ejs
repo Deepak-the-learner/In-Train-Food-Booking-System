@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pantry Login</title>
+    <link rel="stylesheet" href="/styles/style.css" />
+  </head>
+  <style>
+    .error-message {
+      color: red;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+  <body>
+    <h1>Enter Credentails</h1>
+
+    <form action="/orders" method="get">
+      <label for="trainNumber">Enter Train Number:</label>
+      <input type="text" id="trainNumber" name="trainNumber" required />
+
+      <label for="password">Enter Password:</label>
+      <input type="password" id="password" name="password" required />
+
+      <button type="submit">Login</button>
+    </form>
+    <% if (msg == 1) { %>
+    <p class="error-message">Please Check the Credentials</p>
+    <% } %>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Available Options</title>
+    <link rel="stylesheet" href="/styles/style.css" />
+  </head>
+  <style>
+    .meal-options {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .meal-options a {
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    .meal-options button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4caf50;
+      color: white;
+      cursor: pointer;
+    }
+
+    @media (min-width: 768px) {
+      .meal-options a {
+        margin: 0 20px;
+      }
+
+      .meal-options button {
+        padding: 15px 30px;
+        font-size: 18px;
+      }
+    }
+
+    .dinner-options,
+    .out-of-service {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+    }
+
+    .dinner-options a,
+    .out-of-service p {
+      margin: 0 0px;
+    }
+
+    .dinner-options button {
+      padding: 15px 15px;
+      font-size: 20px;
+    }
+  </style>
+  <body>
+    <h1>Options</h1>
+
+    <div class="meal-options">
+      <% if (hours < 12) { %>
+      <a href="/lunch" method="get"><button>Lunch</button></a>
+      <a href="/dinner" method="get"><button>Dinner</button></a>
+      <% } else if (hours >= 12 && hours < 18) { %>
+      <div class="dinner-options">
+        <a href="/dinner" method="get"><button>Dinner</button></a>
+      </div>
+      <% } else { %>
+      <div class="out-of-service">
+        <p>Out of Service</p>
+      </div>
+      <% } %>
+    </div>
+  </body>
+</html>
